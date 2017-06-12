@@ -8,8 +8,8 @@ import glob
 from matplotlib import pyplot as plt
 
 
-path="/home/ahmed/Downloads/training_data/train/"
-path_output="/home/ahmed/Downloads/training_data/train_scaled"
+path="/home/ahmed/Downloads/mnt/fine_tune/1/"
+path_output="/home/ahmed/Downloads/mnt/fine_tune/train/"
 os.chdir(path)
 WIDTH=[]
 HEIGHT=[]

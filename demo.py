@@ -7,13 +7,16 @@ from PIL import Image
 import models.crnn as crnn
 
 
-model_path = '/home/ahmed/crnn/data/crnn.pth'
+
+#model_path = '/home/ahmed/crnn/data/crnn.pth'
+model_path='/home/ahmed/Pictures/model/save_model_first_1/crnn_1.pth'
 #img_path = '/home/ahmed/crnn/data/demo.png'
-img_path='/home/ahmed/Pictures/cogedis/2-total.png'
+#img_path='/home/ahmed/Pictures/cogedis/2-total.png'
+img_path= '/home/ahmed/Pictures/cogedis/cogedis_words_2/2162103c-f6a7-4bed-b2a3-afc2387ca1c2.png'
 alphabet = '0123456789abcdefghijklmnopqrstuvwxyz'
 
 
-model = crnn.CRNN(32, 1, 37, 256, 1).cuda()
+model = crnn.CRNN(32, 1, 37,100, 1).cuda()
 print('loading pretrained model from %s' % model_path)
 model.load_state_dict(torch.load(model_path))
 

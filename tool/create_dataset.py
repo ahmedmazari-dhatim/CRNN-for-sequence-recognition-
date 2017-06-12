@@ -107,7 +107,7 @@ def mine(file_path_data,output):
 if __name__ == '__main__':
     #mine('/home/ahmed/Downloads/mnt/annotation_train.txt','/home/ahmed/Downloads/mnt/data/train/')
     #mine('/home/ahmed/Downloads/mnt/annotation_val.txt',  '/home/ahmed/Downloads/mnt/data/valid/')
-     mine('/home/ahmed/Downloads/mnt/annotation_test.txt',  '/home/ahmed/Downloads/mnt/data/test/')
+     #mine('/home/ahmed/Downloads/mnt/annotation_test.txt',  '/home/ahmed/Downloads/mnt/data/test/')
 '''
 import os
 import lmdb  # install lmdb by "pip install lmdb"

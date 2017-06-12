@@ -1,3 +1,4 @@
+# coding: utf-8
 from __future__ import print_function
 import argparse
 import random
@@ -21,8 +22,8 @@ parser.add_argument('--valroot', required=True, help='path to dataset')
 parser.add_argument('--workers', type=int, help='number of data loading workers', default=2)
 parser.add_argument('--batchSize', type=int, default=64, help='input batch size')
 parser.add_argument('--imgH', type=int, default=64, help='the height / width of the input image to network')
-parser.add_argument('--nh', type=int, default=100, help='size of the lstm hidden state')
-parser.add_argument('--niter', type=int, default=25, help='number of epochs to train for')
+parser.add_argument('--nh', type=int, default=256, help='size of the lstm hidden state')
+parser.add_argument('--niter', type=int, default=65, help='number of epochs to train for')
 parser.add_argument('--lr', type=float, default=1, help='learning rate for Critic, default=0.05')
 parser.add_argument('--beta1', type=float, default=0.5, help='beta1 for adam. default=0.5')
 parser.add_argument('--cuda', action='store_true', help='enables cuda')
@@ -123,7 +124,7 @@ else:
     optimizer = optim.RMSprop(crnn.parameters(), lr=opt.lr)
 
 
-def val(net, dataset, criterion, max_iter=100):
+def val(net, dataset, criterion, max_iter=500000):
     print('Start val')
 
     for p in crnn.parameters():
@@ -138,7 +139,9 @@ def val(net, dataset, criterion, max_iter=100):
     n_correct = 0
     loss_avg = utils.averager()
 
-    for i in range(max_iter):
+    #for i in range(max_iter):
+    for i in range(min(max_iter, len(data_loader))):
+        #print(i)
         data = val_iter.next()
         i += 1
         cpu_images, cpu_texts = data
@@ -166,7 +169,9 @@ def val(net, dataset, criterion, max_iter=100):
         print('%-20s => %-20s, gt: %-20s' % (raw_pred, pred, gt))
 
     accuracy = n_correct / float(max_iter * opt.batchSize)
+
     print('Test loss: %f, accuray: %f' % (loss_avg.val(), accuracy))
+    print('number of correct ', n_correct)
 
 
 #  val(crnn, test_dataset, criterion)
